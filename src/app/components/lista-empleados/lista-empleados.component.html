@@ -1,0 +1,72 @@
+<div class="container-fluid">
+    <div class="card margin">
+        <div class="card-header">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h1>Lista de empleados</h1>
+                </div>
+                <div class="">
+                    <button routerLink="/crear-empleado" class="btn btn-dark">Agregar</button>
+                </div>
+            </div>
+
+        </div>
+        <div class="card-body">
+            <p>Empleados</p>
+            <hr>
+            <div class="table-responsive-sm">
+                <table class="table table-striped table-responsive">
+                    <thead>
+                        <tr>
+                            <th>Avatar</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Sexo</th>
+                            <th>Edad</th>
+                            <th>Area</th>
+                            <th>Salario</th>
+                            <th>Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr *ngFor="let empleado of listaEmpleados | empleadosPipe:pagina">
+                            <td>
+                                <img class="avatar"
+                                    [src]="empleado.avatar == '' ? 'https://us.123rf.com/450wm/salamatik/salamatik1801/salamatik180100019/92979836-perfil-an%C3%B3nimo-icono-de-la-cara-persona-silueta-gris-avatar-masculino-por-defecto-foto-de-marcador-d.jpg?ver=6' : empleado.avatar">
+                            </td>
+                            <td>{{ empleado.nombre }}</td>
+                            <td>{{ empleado.apellido }}</td>
+                            <td>{{ empleado.sexo }}</td>
+                            <td>{{ empleado.edad }}</td>
+                            <td>{{ empleado.area }}</td>
+                            <td>{{ empleado.salario }}</td>
+                            <td>
+                                <div class="d-flex ">
+                                    <div class="ml-2">
+                                        <button [routerLink]="['/editar-empleado', empleado.id]" class="btn btn-info">
+                                            <i class="fas fa-edit"></i>
+                                            Editar
+                                        </button>
+                                    </div>
+                                    <div>
+                                        <button (click)="eliminarEmpleado(empleado.id)" class="btn btn-danger">
+                                            <i class="fas fa-trash-alt"></i>
+                                            Eliminar
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="d-flex justify-content-center">
+                <button (click)="botonAnterior()" class="btn btn-outline-dark">Anterior</button>
+                <button (click)="botonSiguiente()" class="btn btn-outline-dark">Siguiente</button>
+            </div>
+
+        </div>
+    </div>
+</div>
